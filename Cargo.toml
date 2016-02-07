@@ -1,7 +1,7 @@
 [package]
 name = "grokking-rust"
 version = "0.0.1"
-authors = [ "lshlyapnikov@gmail.com" ]
+authors = [ "" ]
 
 [[bin]]
 name = "grokking-rust"
