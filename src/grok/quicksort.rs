@@ -18,10 +18,10 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
             swap(xs, start, start + 1);
         }
     } else {
-        let mut p: usize = (start + (end - 1)) / 2;
+        let mut p: usize = pivot(start, end);
         swap(xs, start, p);
         p = start;
-        let mut i = start + 1; // i pivot's index, where pivot should go in the end
+        let mut i = start + 1; // i points to the next element after the pivot ( > pivot)
         let mut j = start + 1; // j points to the 1st unpartitioned element
         
         while j < end {
@@ -38,6 +38,10 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
         sort_in_place(xs, i, end);
     }
 }
+
+fn pivot(start: usize, end: usize) -> usize {
+    (start + (end - 1)) / 2
+} 
 
 fn swap(xs: &mut Vec<i32>, i: usize, j: usize) {
     let tmp = xs[i];
