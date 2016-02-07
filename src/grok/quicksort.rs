@@ -1,10 +1,10 @@
 pub fn sort(xs: &Vec<i32>) -> Vec<i32> {
     if (xs.len()) <= 1 {
-         xs.to_owned()
+        xs.to_owned()
     } else {
-    	let mut ys: Vec<i32> = xs.clone();
-    	sort_in_place(&mut ys, 0, xs.len());
-    	ys
+        let mut ys: Vec<i32> = xs.clone();
+        sort_in_place(&mut ys, 0, xs.len());
+        ys
     }
 }
 
@@ -23,7 +23,7 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
         p = start;
         let mut i = start + 1; // i points to the next element after the pivot ( > pivot)
         let mut j = start + 1; // j points to the 1st unpartitioned element
-        
+
         while j < end {
             if xs[j] < xs[p] {
                 swap(xs, j, i);
@@ -33,7 +33,7 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
                 j += 1;
             }
         }
-        swap(xs, p, i-1);
+        swap(xs, p, i - 1);
         sort_in_place(xs, start, i - 1);
         sort_in_place(xs, i, end);
     }
@@ -41,7 +41,7 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
 
 fn pivot(start: usize, end: usize) -> usize {
     (start + (end - 1)) / 2
-} 
+}
 
 fn swap(xs: &mut Vec<i32>, i: usize, j: usize) {
     let tmp = xs[i];
