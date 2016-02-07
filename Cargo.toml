@@ -1,9 +1,14 @@
 [package]
-
-name = "hello_world"
+name = "grokking-rust"
 version = "0.0.1"
-authors = [ "Your name <you@example.com>" ]
+authors = [ "lshlyapnikov@gmail.com" ]
 
 [[bin]]
+name = "grokking-rust"
 
-name = "hello_world"
+[dependencies]
+log = "0.3"
+env_logger = "0.3"
+quickcheck = "0.2"
+
+[dev-dependencies]
