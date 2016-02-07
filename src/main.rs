@@ -2,8 +2,8 @@
 extern crate log;
 extern crate env_logger;
 extern crate quickcheck;
-mod grok;
 use quickcheck::quickcheck;
+mod grok;
 use grok::mergesort;
 use grok::quicksort;
 
