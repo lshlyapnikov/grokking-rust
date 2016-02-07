@@ -10,9 +10,9 @@ use grok::quicksort;
 
 fn main() {
 	fn test_sut<F>(sut: F , input: Vec<i32>) -> bool where F : Fn(&Vec<i32>) -> Vec<i32> {
-	    debug!("input :     {:?}", input);
-        let sorted: Vec<i32> = sut(&input);
-        debug!("sorted: {:?}", sorted);
+		debug!("input :     {:?}", input);
+		let sorted: Vec<i32> = sut(&input);
+		debug!("sorted: {:?}", sorted);
         let mut result = true;
         for win in sorted.windows(2) {
             if win[0] > win[1] {
