@@ -46,6 +46,7 @@ fn pivot(start: usize, end: usize) -> usize {
     (start + (end - 1)) / 2
 }
 
+// TODO: implement your own swap, does it have to be unsafe?
 fn swap<T>(xs: &mut Vec<T>, i: usize, j: usize) {
     xs.swap(i, j);
 }
