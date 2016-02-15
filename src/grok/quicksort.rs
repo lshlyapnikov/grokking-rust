@@ -5,10 +5,8 @@ pub fn sort<T: PartialOrd + Clone>(xs: &Vec<T>) -> Vec<T> {
 }
 
 pub fn sort_in_place<T: PartialOrd>(xs: &mut Vec<T>) {
-    let size = xs.len();
-    if size >= 1 {
-        _sort_in_place(xs, 0, size);
-    }
+    let len = xs.len();
+    _sort_in_place(xs, 0, len);
 }
 
 // end is not included
