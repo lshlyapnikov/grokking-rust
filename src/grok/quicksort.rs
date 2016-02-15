@@ -1,15 +1,18 @@
-pub fn sort(xs: &Vec<i32>) -> Vec<i32> {
-    if (xs.len()) <= 1 {
-        xs.to_owned()
-    } else {
-        let mut ys: Vec<i32> = xs.clone();
-        sort_in_place(&mut ys, 0, xs.len());
-        ys
+pub fn sort<T: PartialOrd + Clone>(xs: &Vec<T>) -> Vec<T> {
+    let mut ys: Vec<T> = xs.to_vec();
+    sort_in_place(&mut ys);
+    ys
+}
+
+pub fn sort_in_place<T: PartialOrd>(xs: &mut Vec<T>) {
+    let size = xs.len();
+    if size >= 1 {
+        _sort_in_place(xs, 0, size);
     }
 }
 
 // end is not included
-fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
+fn _sort_in_place<T: PartialOrd>(xs: &mut Vec<T>, start: usize, end: usize) {
     let len = end - start;
     if len <= 1 {
         // we are done
@@ -34,8 +37,8 @@ fn sort_in_place(xs: &mut Vec<i32>, start: usize, end: usize) {
             }
         }
         swap(xs, p, i - 1);
-        sort_in_place(xs, start, i - 1);
-        sort_in_place(xs, i, end);
+        _sort_in_place(xs, start, i - 1);
+        _sort_in_place(xs, i, end);
     }
 }
 
@@ -43,8 +46,6 @@ fn pivot(start: usize, end: usize) -> usize {
     (start + (end - 1)) / 2
 }
 
-fn swap(xs: &mut Vec<i32>, i: usize, j: usize) {
-    let tmp = xs[i];
-    xs[i] = xs[j];
-    xs[j] = tmp;
+fn swap<T>(xs: &mut Vec<T>, i: usize, j: usize) {
+    xs.swap(i, j);
 }

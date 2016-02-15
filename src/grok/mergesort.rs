@@ -1,9 +1,9 @@
-pub fn sort(xs: &Vec<i32>) -> Vec<i32> {
+pub fn sort<T: PartialOrd + Clone>(xs: &Vec<T>) -> Vec<T> {
     if (xs.len()) <= 1 {
         xs.to_owned()
     } else if xs.len() == 2 {
         if xs[0] > xs[1] {
-            vec![xs[1], xs[0]]
+            vec![xs[1].clone(), xs[0].clone()]
         } else {
             xs.to_owned()
         }
@@ -14,16 +14,17 @@ pub fn sort(xs: &Vec<i32>) -> Vec<i32> {
     }
 }
 
-fn merge_sort_vectors(xs: &Vec<i32>, ys: &Vec<i32>) -> Vec<i32> {
+// TODO: can clone() be avoided? Box?
+fn merge_sort_vectors<T: PartialOrd + Clone>(xs: &Vec<T>, ys: &Vec<T>) -> Vec<T> {
     let mut zs = Vec::with_capacity(xs.len() + ys.len());
     let mut i = 0;
     let mut j = 0;
     loop {
         if xs[i] <= ys[j] {
-            zs.push(xs[i]);
+            zs.push(xs[i].clone());
             i += 1;
         } else {
-            zs.push(ys[j]);
+            zs.push(ys[j].clone());
             j += 1;
         }
 
@@ -31,13 +32,13 @@ fn merge_sort_vectors(xs: &Vec<i32>, ys: &Vec<i32>) -> Vec<i32> {
             break;
         } else if i == xs.len() && j < ys.len() {
             while j < ys.len() {
-                zs.push(ys[j]);
+                zs.push(ys[j].clone());
                 j += 1;
             }
             break;
         } else if i < xs.len() && j == ys.len() {
             while i < xs.len() {
-                zs.push(xs[i]);
+                zs.push(xs[i].clone());
                 i += 1;
             }
             break;
