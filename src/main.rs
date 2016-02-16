@@ -8,6 +8,22 @@ use grok::mergesort;
 use grok::quicksort;
 use std::fmt::Debug;
 
+trait RunItWithDependencies {
+	fn method_a(&self) -> String;
+
+	fn method_b(&self) -> String;
+
+	fn run_it(&self) -> String { format!("called {} and {}", self.method_a(), self.method_b()) }
+}
+
+struct Dummy;
+
+impl RunItWithDependencies for Dummy {
+
+	fn method_a(&self) -> String { "method_a".to_string() }
+
+	fn method_b(&self) -> String { "method_b".to_string() }
+}
 
 fn main() {
     fn test_sort_function<F, T: PartialOrd + Debug>(sut: F, input: &Vec<T>) -> bool
@@ -49,41 +65,24 @@ fn main() {
     info!("quicksort::sort");
     quickcheck(quicksort_quickcheck_with_ints as fn(Vec<i32>) -> bool);
     quickcheck(quicksort_quickcheck_with_strs as fn(Vec<String>) -> bool);
+
+	let d = Dummy;
+	let actual_str = d.run_it();
+	info!("actual_str: {}", actual_str);
+	assert_eq!(actual_str, "called method_a and method_b");
 }
 
 #[cfg(test)]
 mod tests {
-    //    use quickcheck::quickcheck;
-    //    use super::mergesort;
-    //
-    //    #[test]
-    //    fn test_mergesort() {
-    //        let input = vec![30, 20, 10];
-    //        let actual = mergesort(&input);
-    //        let expected: Vec<i32> = vec![10, 20, 30];
-    //        assert_eq!(actual, expected)
-    //    }
-    //
-    //    #[test]
-    //    fn test_mergesort_quickcheck() {
-    // 		fn test_sut<F>(sut: F, input: Vec<i32>) -> bool where F: Fn(&Vec<i32>) -> Vec<i32> {
-    //    	    debug!("input :     {:?}", input);
-    //            let sorted = sut(&input);
-    //            debug!("sorted: {:?}", sorted);
-    //            let mut result = true;
-    //            for win in sorted.windows(2) {
-    //                if win[0] > win[1] {
-    //                    result = false;
-    //                    break;
-    //                }
-    //            }
-    //            result
-    //    	}
-    //
-    // 		fn mergesort_quickcheck(xs: Vec<i32>) -> bool {
-    // 			test_sut(mergesort, xs)
-    //        }
-    //
-    //    	quickcheck(mergesort_quickcheck as fn(Vec<i32>) -> bool);
-    // 	}
+	use super::grok::mergesort;
+
+    #[test]
+    fn test_mergesort() {
+		println!("OOPS");
+        let input = vec![30, 20, 10];
+        let actual = mergesort::sort(&input);
+        let expected: Vec<i32> = vec![10, 20, 30];
+        assert_eq!(actual, expected)
+    }
+
 }
