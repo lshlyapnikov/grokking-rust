@@ -9,20 +9,25 @@ use grok::quicksort;
 use std::fmt::Debug;
 
 trait RunItWithDependencies {
-	fn method_a(&self) -> String;
+    fn method_a(&self) -> String;
 
-	fn method_b(&self) -> String;
+    fn method_b(&self) -> String;
 
-	fn run_it(&self) -> String { format!("called {} and {}", self.method_a(), self.method_b()) }
+    fn run_it(&self) -> String {
+        format!("called {} and {}", self.method_a(), self.method_b())
+    }
 }
 
 struct Dummy;
 
 impl RunItWithDependencies for Dummy {
+    fn method_a(&self) -> String {
+        "method_a".to_string()
+    }
 
-	fn method_a(&self) -> String { "method_a".to_string() }
-
-	fn method_b(&self) -> String { "method_b".to_string() }
+    fn method_b(&self) -> String {
+        "method_b".to_string()
+    }
 }
 
 fn main() {
@@ -66,19 +71,19 @@ fn main() {
     quickcheck(quicksort_quickcheck_with_ints as fn(Vec<i32>) -> bool);
     quickcheck(quicksort_quickcheck_with_strs as fn(Vec<String>) -> bool);
 
-	let d = Dummy;
-	let actual_str = d.run_it();
-	info!("actual_str: {}", actual_str);
-	assert_eq!(actual_str, "called method_a and method_b");
+    let d = Dummy;
+    let actual_str = d.run_it();
+    info!("actual_str: {}", actual_str);
+    assert_eq!(actual_str, "called method_a and method_b");
 }
 
 #[cfg(test)]
 mod tests {
-	use super::grok::mergesort;
+    use super::grok::mergesort;
 
     #[test]
     fn test_mergesort() {
-		println!("OOPS");
+        println!("OOPS");
         let input = vec![30, 20, 10];
         let actual = mergesort::sort(&input);
         let expected: Vec<i32> = vec![10, 20, 30];
