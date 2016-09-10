@@ -1,3 +1,4 @@
 verbose = true
 format_strings = false
 reorder_imports = true
+tab_spaces = 2
