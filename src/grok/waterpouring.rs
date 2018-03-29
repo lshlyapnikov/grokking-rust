@@ -37,7 +37,7 @@ impl HasChangeState for State {
 }
 
 pub fn solve(max_volumes: &Vec<usize>, required_volume: usize) -> State {
-  let volumes: Vec<usize> = vec![0, glass_volumes.len()];
+  let volumes: Vec<usize> = vec![0, max_volumes.len()];
   
   
   State { glasses: Vec::new(), actions: Vec::new() }
