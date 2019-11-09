@@ -31,8 +31,12 @@ impl RunItWithDependencies for Dummy {
 }
 
 fn main() {
+  for d in [10, 0, 1].iter().cloned() {
+    println!("d: {}", d);
+  }
   fn test_sort_function<F, T: PartialOrd + Debug>(sut: F, input: &Vec<T>) -> bool
-    where F: Fn(&Vec<T>) -> Vec<T>
+  where
+    F: Fn(&Vec<T>) -> Vec<T>,
   {
     debug!("input :     {:?}", input);
     let sorted: Vec<T> = sut(&input);
@@ -89,5 +93,4 @@ mod tests {
     let expected: Vec<i32> = vec![10, 20, 30];
     assert_eq!(actual, expected)
   }
-
 }

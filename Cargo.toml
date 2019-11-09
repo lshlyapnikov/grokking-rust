@@ -12,3 +12,8 @@ env_logger = "0.3"
 quickcheck = "0.2"
 
 [dev-dependencies]
+
+[workspace]
+members = [
+  "crates/tramp",
+]
