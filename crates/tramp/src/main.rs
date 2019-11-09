@@ -12,6 +12,8 @@ fn factorial_rec(n: BigInteger) -> BigInteger {
     }
 }
 
+// replaced * with + for smaller number
+
 fn factorial_so1(n: u128) -> u128 {
     if n > 1 {
         n + factorial_so1(n - 1)
@@ -67,7 +69,7 @@ fn factorial_tr(n: u128) -> u128 {
 }
 
 fn main() {
-    // println!("factorial_rec: {:?}", factorial_rec(BigInteger::new("12345")));
+    println!("factorial_rec: {:?}", factorial_rec(BigInteger::new("123")));
     println!("factorial_so() = {:?}", factorial_so(12345));
     println!("factorial_tr() = {:?}", factorial_tr(12345678));
     // println!("factorial_so1() = {:?}", factorial_so1(123457));
