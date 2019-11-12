@@ -27,6 +27,17 @@ fn sum(arr: &'static [i32]) -> Free<i32> {
     go(arr, 0)
 }
 
+fn ackermann(m: u128, n: u128) -> Free<u128> {
+    if m == 0 {
+        Free::Pure(n + 1)
+    } else if n == 0 {
+        Free::Suspend(Box::new(move || ackermann(m - 1, 1)))
+    } else {
+        let a: u128 = Free::go(ackermann(m, n - 1));
+        Free::Suspend(Box::new(move || ackermann(m - 1, a)))
+    }
+}
+
 fn main() {
     let st0 = Free::Pure(0);
     // println!("st0: {:?}", st0);
@@ -35,6 +46,8 @@ fn main() {
     let st2: Free<i32> = Free::Suspend(Box::new(|| st0));
     // println!("st1: {:?}", st1);
 
-    let sumR: i32 = Free::go(sum(&[1, 2, 3, 6, 7]));
-    println!("sum: {:?}", sumR)
+    let sum_r: i32 = Free::go(sum(&[1, 2, 3, 6, 7]));
+    println!("sum: {:?}", sum_r);
+
+    println!("ackermann(4, 1): {:?}", Free::go(ackermann(4, 1)));
 }
