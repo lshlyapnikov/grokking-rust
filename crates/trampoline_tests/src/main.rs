@@ -1,5 +1,4 @@
-use std::fmt::Debug;
-
+use trampoline::*;
 use bigint_base10::BigInteger;
 
 fn factorial_rec(n: BigInteger) -> BigInteger {
@@ -32,28 +31,6 @@ fn factorial_so(n: u128) -> u128 {
     }
 
     factorial_loop(n, 1)
-}
-
-enum Trampoline<A, R> {
-    Continue(A, R),
-    End(R),
-}
-
-impl<A: Debug, R: Debug> Trampoline<A, R> {
-    fn go(f: fn(A, R) -> Trampoline<A, R>, a0: A, acc0: R) -> R {
-        let mut a = a0;
-        let mut acc = acc0;
-        loop {
-            // println!("a: {:?}, acc: {:?}", a, acc);
-            match f(a, acc) {
-                Trampoline::Continue(a1, acc1) => {
-                    a = a1;
-                    acc = acc1;
-                }
-                Trampoline::End(acc1) => return acc1,
-            }
-        }
-    }
 }
 
 fn factorial_trampoline(n: u128, acc: u128) -> Trampoline<u128, u128> {

@@ -15,5 +15,7 @@ quickcheck = "0.2"
 
 [workspace]
 members = [
-  "crates/tramp",
+  "crates/trampoline",
+  "crates/trampoline_tests",
+  "crates/free",
 ]

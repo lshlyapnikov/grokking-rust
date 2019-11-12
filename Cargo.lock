@@ -28,6 +28,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "free"
+version = "0.1.0"
+
+[[package]]
 name = "fuchsia-cprng"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -166,10 +170,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "tramp"
+name = "trampoline"
 version = "0.1.0"
 dependencies = [
  "bigint-base10 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "trampoline_tests"
+version = "0.1.0"
+dependencies = [
+ "bigint-base10 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "trampoline 0.1.0",
 ]
 
 [[package]]
