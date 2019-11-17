@@ -66,6 +66,6 @@ mod tests {
         assert_eq!(sut(3, 4), 125);
         assert_eq!(sut(3, 6), 509);
         assert_eq!(sut(3, 6), 509);
-        // assert_eq!(sut(4, 1), 65533);
+        assert_eq!(sut(4, 1), 65533);
     }
 }

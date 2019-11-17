@@ -17,5 +17,4 @@ quickcheck = "0.2"
 members = [
   "crates/trampoline",
   "crates/trampoline_tests",
-  "crates/free",
 ]
